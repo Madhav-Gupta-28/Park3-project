@@ -1,38 +1,59 @@
-.App {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300;1,400&display=swap");
+
+/* ----   LOgin ------------- */
+.login {
+  background-color: #0096ff;
+}
+
+.textcolor {
+  color: #fff;
+}
+
+.h1-park3 {
+  font-size: 3.4rem;
+  font-weight: 700;
+
+  font-family: "Ubuntu", sans-serif;
+  /* text-shadow: 1px 1px 1px #fff; */
+  text-shadow: 1px 1px 1px #000, 3px 3px 5px blue;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.center {
+  /* display: block; */
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
+  margin: 2rem auto 0 auto;
+  border-radius: 1rem;
+  box-shadow: 0 8px 8px -4px lightblue;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.login-div {
+  border-radius: 3rem;
+  margin: 5rem auto;
+  /* border: 2px solid #333; */
+  box-shadow: 3px 4px 3px 4px #333;
+  background-color: #fff4cf;
+  color: #333;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.login-div > h1 {
+  color: #0096ff;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin: -1rem 0 1rem 0;
+  /* font-family: "Ubuntu", sans-serif; */
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.login-div > div {
+  background-color: #0096ff;
+  font-size: 1.4rem;
+  border: 3px solid #333;
+  font-weight: 700;
 }
