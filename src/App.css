@@ -5,9 +5,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300;1,400&display=swap");
 
-/* ----   LOgin ------------- */
+/* Global classes*/
+
+.underlime {
+  text-decoration: underline;
+}
+
+.h-full {
+  max-height: 100vh;
+}
+
+.none {
+  display: none;
+}
+
+.inline {
+  display: inline;
+}
+
+.back-color {
+  background-image: linear-gradient(#5b8bdf, #00cce5);
+}
+/* ----  ---------   LOgin ------------- */
 .login {
-  background-color: #0096ff;
+  background-image: linear-gradient(#5b8bdf, #00cce5);
 }
 
 .textcolor {
@@ -15,7 +36,7 @@
 }
 
 .h1-park3 {
-  font-size: 3.4rem;
+  font-size: 3.2rem;
   font-weight: 700;
 
   font-family: "Ubuntu", sans-serif;
@@ -52,8 +73,236 @@
 }
 
 .login-div > div {
-  background-color: #0096ff;
+  /* background-color: #0096ff; */
+  background-image: linear-gradient(#5b8bdf, #00cce5);
   font-size: 1.4rem;
   border: 3px solid #333;
   font-weight: 700;
+}
+
+/*  -----------        Header         ---------------------- */
+
+.main {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  /* align-items: baseline; */
+}
+
+.main > div > h1 {
+  font-size: 3.2rem;
+  font-weight: 700;
+
+  font-family: "Ubuntu", sans-serif;
+  /* text-shadow: 1px 1px 1px #fff; */
+  text-shadow: 1px 1px 1px #000, 3px 3px 5px blue;
+}
+
+.username-addr > div > svg {
+  /* background-color: #fff; */
+  color: #fff;
+  display: inline;
+  margin: 1rem 1rem 1rem 1rem;
+  cursor: pointer;
+}
+
+.username-addr {
+  color: #fff;
+  font-size: 1.6rem;
+  margin: 1rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.proposeslist-btn {
+  background-color: #fff;
+  color: #0096ff;
+  border-radius: 1rem;
+  padding: 0 1rem;
+  display: block;
+  transform: all 0.4s;
+}
+
+.username-addr > div {
+  display: inline;
+}
+
+.proposeslist-btn:hover {
+  background-color: #0096ff;
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+/* -----------        Home         ------------------ */
+
+.upload-icon {
+  display: inline;
+  margin: 3rem;
+  color: #fff;
+  width: 8rem;
+  height: 9rem;
+  text-shadow: 3px 3px 3px #000;
+}
+
+.div-home-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.div-home-content > h2 {
+  font-size: 1.4rem;
+  margin: -2rem 0 0 0;
+}
+
+.div-home-content > div {
+  margin: 3rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  font-size: 2rem;
+}
+
+.div-home-content > div > input {
+  padding: 0.3rem 1.2rem;
+  border-radius: 1rem;
+  box-shadow: inset 0 0 5px #333;
+}
+
+.div-home-content > div > button {
+  font-size: 1.4rem;
+  background-color: #277bc0;
+  color: #fff;
+  padding: 0.2rem 11rem;
+  border-radius: 1rem;
+  margin: 2rem 0 0 0;
+  transition: all 0.4s;
+}
+
+.div-home-content > div > button:hover {
+  background-color: #fff;
+  color: #277bc0;
+  border: 3px solid #277bc0;
+}
+
+.div-home-content > div > h5 {
+  font-size: 1.6rem;
+  margin: 0.4rem 0;
+}
+
+/*        ------------------         ORCODE        ------------------- */
+
+.success-upload {
+  color: chartreuse;
+  font-weight: 1000;
+}
+
+.main-success-upload > div > button {
+  font-size: 1.4rem;
+  background-color: #277bc0;
+  color: #fff;
+  padding: 0.2rem 11rem;
+  border-radius: 1rem;
+  margin: 2rem 0 0 0;
+  transition: all 0.4s;
+}
+
+.main-success-upload > div > button:hover {
+  background-color: #fff;
+  color: #277bc0;
+  border: 3px solid #277bc0;
+}
+
+.main-success-upload > div > h3 {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+/* BG color: #5B8BDF
+Gradient color: #00CCE5 */
+
+/* /*  ----------------         Propose       ---------------------------- *\ */
+
+.main-proposal-div {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 80vh;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5rem 0 0 0;
+}
+
+.proposal-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #fff;
+  border: 3px solid #0096ff;
+  width: 80vw;
+  height: 9vh;
+  row-gap: 4rem;
+  column-gap: 4rem;
+  align-content: center;
+  border-radius: 1rem;
+}
+
+.proposal-des {
+  color: #0096ff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.proposal-video {
+  background-color: #0096ff;
+  color: #fff;
+  padding: 0.5rem 2rem;
+  max-height: 3rem;
+  margin: 0.4rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: 600;
+  transition: all 0.6s;
+}
+
+.proposal-video:hover {
+  background-color: #fff;
+  color: #0096ff;
+  border: 2px solid #0096ff;
+  font-size: 1.2rem;
+}
+
+.proposal-address {
+  font-size: 1.2rem;
+  color: #0096ff;
+  font-weight: 800;
+  margin: 0.4rem;
+  cursor: pointer;
+}
+
+.proposal-report {
+  background-color: #d61c4e;
+  max-height: 3rem;
+  color: #fff;
+  margin: 0.4rem;
+  padding: 0.5rem 1.8rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: 600;
+  transition: all 0.6s;
+}
+
+.proposal-report:hover {
+  color: #d61c4e;
+  background-color: #fff;
+  border: 3px solid #d61c4e;
+  font-size: 1.2rem;
 }
