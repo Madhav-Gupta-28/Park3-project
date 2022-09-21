@@ -1,10 +1,15 @@
 import React, { useContext, useState, useRef } from "react";
 import { AppStateContext } from "../../App";
+// import fs from "fs";
 import "../../App.css";
 import Header from "../Header/Header";
 import Qrcode from "../QRCode/Qrcode";
 
 function Home() {
+  const [videoFile, setvideoFile] = useState("");
+  const [assetTUS, setAssetTUS] = useState("");
+  const [Videourl, seturl] = useState("");
+
   const {
     walletaddress,
     login,
@@ -16,22 +21,69 @@ function Home() {
     setproposalData,
   } = useContext(AppStateContext);
 
+  const VideoFileRef = useRef();
   const Descriptionref = useRef();
 
-  const sendBtn = (event) => {
+  async function getUploadURL() {
+    // e.preventDefault();
+
+    try {
+      const response = await fetch(
+        "https://livepeer.studio/api/asset/request-upload",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer 0d9414e8-cb34-4239-ae74-b6e322b151b8`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: videoFile,
+          }),
+        }
+      );
+
+      const { url, tusEndpoint } = await response.json();
+
+      setAssetTUS(tusEndpoint);
+      seturl(url);
+      console.log(Videourl);
+      // console.log(url);
+      console.log(assetTUS);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const sendBtn = async (event) => {
     event.preventDefault();
+    setvideoFile(VideoFileRef.current.value);
     setdescription(Descriptionref.current.value);
     setuploadSucess(true);
     console.log(description);
+    getUploadURL();
     setproposalData([
       ...proposalData,
       {
         proposer: walletaddress,
         description: description,
-        document: "Some Fucking URl",
+        documentName: videoFile,
         progress: "OnGoing",
+        documentUrl: Videourl,
       },
     ]);
+
+    for (let i = 0; i < proposalData.length; i++) {
+      console.log(proposalData[i]);
+    }
+
+    // await fetch(Videourl, {
+    //   method: "PUT",
+    //   headers: {
+    //     Authorization: `Bearer 0d9414e8-cb34-4239-ae74-b6e322b151b8`,
+    //     "Content-Type": "video/mp4",
+    //   },
+    //   // body: fs.createReadStream(path),
+    // });
   };
 
   return (
@@ -65,7 +117,8 @@ function Home() {
               Upload Files To <span className="underline">PARK3</span>
             </h2>
 
-            <div>
+            {/* <div> */}
+            <form method="POST">
               <input
                 type="text"
                 required
@@ -76,15 +129,19 @@ function Home() {
               />
               <h5 className="textcolor">IN</h5>
               <input
-                type="text"
+                type="file"
+                accept="video/*"
                 id="video"
                 name="video"
+                ref={VideoFileRef}
+                required
                 placeholder="Location"
               />
               <button onClick={sendBtn}>Send</button>
-            </div>
+            </form>
           </div>
         </div>
+        // </div>
       )}
     </>
   );

@@ -4,7 +4,8 @@ import Header from "../Header/Header";
 import "../../App.css";
 
 function Qrcode() {
-  const { description } = useContext(AppStateContext);
+  const { description, proposalData } = useContext(AppStateContext);
+
   return (
     <>
       <div className=" h-screen back-color main-success-upload">
