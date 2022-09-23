@@ -124,4 +124,8 @@ contract Uma {
         bytes memory ancillaryData = contentIdToAncillaryData[contentId];
         return oo.getRequest(address(this), identifier, startingTime, ancillaryData).expirationTime;
     }
+
+    function getOracleAddress() public view returns(address) {
+        return address(oo);
+     }
 }
