@@ -1,0 +1,12 @@
+{
+  "name": "hardhat-project",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "dotenv": "^16.0.2",
+    "hardhat": "^2.11.2"
+  },
+  "dependencies": {
+    "@nomiclabs/hardhat-etherscan": "^3.1.0",
+    "@uma/core": "^2.36.0"
+  }
+}

@@ -14,7 +14,7 @@ function Proposal(props) {
     <div className="main-proposal-div ">
       {proposalData.map((proposal) => {
         return (
-          <div className="proposal-div inline">
+          <div className="proposal-div inline" key={proposal.proposer}>
             <div className="proposal-des inline">
               {proposal.description.slice(0, 10)}...
             </div>
