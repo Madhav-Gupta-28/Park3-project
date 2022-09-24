@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import { AppStateContext } from "../../App";
 import Header from "../Header/Header";
 import "../../App.css";
@@ -32,9 +33,9 @@ function Qrcode() {
           <h2 className="textcolor success-upload">"SUCCESS COMPLETE"</h2>
 
           <h3>"{description}"</h3>
-
-          <div>QRCode</div>
-          <button> Watch video</button>
+          <div className="watch-btn">
+            <Link to={`/watchvideo`}>Watch Video</Link>
+          </div>
         </div>
       </div>
     </>

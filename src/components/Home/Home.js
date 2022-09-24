@@ -1,6 +1,6 @@
 import React, { useContext, useState, useRef } from "react";
 import { AppStateContext } from "../../App";
-// import { fs } from "browserify-fs";
+import * as tus from "tus-js-client";
 import { createReadStream } from "fs-web";
 import "../../App.css";
 import Header from "../Header/Header";
@@ -12,6 +12,7 @@ function Home() {
   const [videoFile, setvideoFile] = useState("");
   const [assetTUS, setAssetTUS] = useState("");
   const [Videourl, seturl] = useState("");
+  const [video, setvideo] = useState("");
 
   const {
     walletaddress,
@@ -27,6 +28,21 @@ function Home() {
   const VideoFileRef = useRef();
   const Descriptionref = useRef();
 
+  const storeAssetOnIPFS = async function (id) {
+    await fetch(`https://livepeer.studio/api/asset/${id}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer 6a234aef-9c9c-41a1-82ba-948e33476fa2`,
+        "Content-Type": "application/json",
+      },
+      body: {
+        storage: {
+          ipfs: true,
+        },
+      },
+    });
+  };
+
   async function getUploadURL() {
     try {
       const response = await fetch(
@@ -34,7 +50,7 @@ function Home() {
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer 0d9414e8-cb34-4239-ae74-b6e322b151b8`,
+            Authorization: `Bearer 6a234aef-9c9c-41a1-82ba-948e33476fa2`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -48,8 +64,33 @@ function Home() {
       setAssetTUS(tusEndpoint);
       seturl(url);
       console.log(Videourl);
-      // console.log(url);
-      console.log(assetTUS);
+
+      const upload = new tus.Upload(video, {
+        endpoint: tusEndpoint, // URL from `tusEndpoint` field in the `/request-upload` response
+        retryDelays: [0, 3000, 5000, 10000, 20000],
+        metadata: {
+          filename: videoFile,
+          filetype: "video/mp4",
+        },
+        uploadSize: video.size,
+        onError(err) {
+          console.error("Error uploading file:", err);
+        },
+        onProgress(bytesUploaded, bytesTotal) {
+          const percentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);
+          console.log("Uploaded " + percentage + "%");
+        },
+        onSuccess() {
+          console.log("Upload finished:", upload.url);
+        },
+      });
+      const previousUploads = await upload.findPreviousUploads();
+      if (previousUploads.length > 0) {
+        upload.resumeFromPreviousUpload(previousUploads[0]);
+      }
+      upload.start();
+
+      await storeAssetOnIPFS(`60e4ca58-1490-43d4-a934-7d751f19eb1c`);
     } catch (error) {
       console.log(error);
     }
@@ -57,6 +98,8 @@ function Home() {
 
   const sendBtn = (event) => {
     event.preventDefault();
+
+    // getUploadURL();
     setvideoFile(VideoFileRef.current.value);
     setdescription(Descriptionref.current.value);
 
@@ -74,12 +117,6 @@ function Home() {
     ]);
 
     setuploadSucess(true);
-
-    // for (let i = 0; i < proposalData.length; i++) {
-    //   console.log(proposalData[i]);
-    // }
-
-    // uploadVideoAssest();
   };
 
   return (
@@ -92,12 +129,9 @@ function Home() {
           <div className="min-w-full div-home-content">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              // width="80"
-              // height="100"
               fill="currentColor"
               className="bi bi-cloud-upload upload-icon"
               viewBox="0 0 16 16"
-              // className="upload-icon"
             >
               <path
                 fillRule="evenodd"
@@ -132,6 +166,7 @@ function Home() {
                 ref={VideoFileRef}
                 required
                 placeholder="Location"
+                onChange={(e) => setvideo(e?.target?.files[0])}
               />
               <button onClick={sendBtn}>Send</button>
             </form>

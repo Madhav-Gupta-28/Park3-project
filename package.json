@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@livepeer/react": "^0.4.0",
+    "@livepeer/react": "^0.6.0",
     "@livepeer/video-nft": "^0.3.6",
     "@nomiclabs/hardhat-etherscan": "^3.1.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@uma/core": "^2.36.0",
+    "@uma/sdk": "^0.29.1",
     "axios": "^0.27.2",
     "babel-plugin-preval": "^5.1.0",
     "browserify-fs": "^1.0.0",
@@ -53,6 +54,7 @@
     ]
   },
   "devDependencies": {
-    "hardhat": "^2.11.2"
+    "hardhat": "^2.11.2",
+    "video.js": "^7.20.3"
   }
 }
