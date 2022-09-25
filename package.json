@@ -12,8 +12,6 @@
     "@uma/core": "^2.36.0",
     "@uma/sdk": "^0.29.1",
     "axios": "^0.27.2",
-    "babel-plugin-preval": "^5.1.0",
-    "browserify-fs": "^1.0.0",
     "dotenv": "^16.0.2",
     "ethers": "^5.7.1",
     "fs": "^0.0.1-security",
